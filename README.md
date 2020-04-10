@@ -17,7 +17,7 @@
 >
 >   当FileName为.或*时提交全部
 
-git commit -m "注释"
+git commit \-m "注释"
 
 >   提交暂存区的文件，一并提交！
 >
@@ -43,7 +43,7 @@ git log
 
 ## 版本回退
 
-git reset –hard HEAD^
+git reset \-\-hard HEAD^
 
 >   退回上一个版本
 >
@@ -51,7 +51,7 @@ git reset –hard HEAD^
 >
 >   HEAD~100退回前100个版本。。。
 
-git reset –hard 版本号
+git reset \-\-hard 版本号
 
 >   退回到哪一个版本，版本号不用写全，写前四五位就可以了
 
@@ -61,7 +61,24 @@ git reflog
 >
 >   可以显示你每一次命令
 
-git diff HEAD -- xxx.txt
+git diff HEAD \-\- xxx.txt
 
 >   查看提交后和现在的文件有什么区别
 
+git checkout \-\- xxx.txt
+
+>   撤销在工作区的修改，文件名：xxx.txt
+
+git reset HEAD xxx.txt
+
+>   撤销暂存区的修改，文件名：xxx.txt
+
+git rm xxx.txt
+
+>   删除一个文件，与直接删的话，git status会告诉你删除文件
+>
+>   使用git rm xxx.txt
+>
+>   再add，commit
+>
+>   删错了使用git checkout -- xxx.txt还原
