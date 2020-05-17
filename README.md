@@ -103,3 +103,36 @@
 
 >   克隆仓库到当前文件夹
 
+## 分支管理
+
+### git checkout -b dev
+
+>   创建dev分支并切换
+>
+>   同等于：
+>
+>   git branch dev
+>
+>   创建分支
+>
+>   git checkout dev
+>
+>   切换分支
+
+### git branch
+
+>   查看所有分支
+
+### git merge dev
+
+>   合并分支，但前提是需要不在dev分支
+
+## git switch
+
+>   git switch -c dev创建and切换分支
+>
+>   git switch dev切换分支
+
+git branch -d dev
+
+>   删除dev分支
