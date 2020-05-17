@@ -44,6 +44,8 @@
 >
 >   xxxxx是版本号，记住前几位，以后版本回退时会用到它。
 
+---
+
 ## 版本回退
 
 ### git reset \-\-hard HEAD^
@@ -86,6 +88,8 @@
 >
 >   删错了使用git checkout -- xxx.txt还原。
 
+---
+
 ## 远程库
 
 ## ssh-keygen -t rsa -C "youremail@example.com"
@@ -105,6 +109,8 @@
 ## git clone git@github.com:xxx/xxx.git
 
 >   克隆仓库到当前文件夹。
+
+---
 
 ## 分支管理
 
@@ -130,7 +136,7 @@
 
 >   合并分支，但前提是需要不在dev分支。
 
-## git switch
+### git switch
 
 >   git switch -c dev创建and切换分支。
 >
@@ -140,7 +146,7 @@ git branch -d dev
 
 >   删除dev分支。
 
-## 冲突
+### 冲突
 
 >   当两个分支合并时存在冲突，（如master和dev上的1.txt不同）则git则会这样：
 >
@@ -158,4 +164,121 @@ git branch -d dev
 >
 >   一个是漂亮的一条线，另一个是缩写commit。
 
+### Fast forward
+
+>   通常，合并分支时，如果可能，Git会用`Fast forward`模式，但这种模式下，删除分支后，会丢掉分支信息。
+>
+>   如果要强制禁用`Fast forward`模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+>
+>   添加--no-ff参数，就那么简单。
+
+### 保存工作现场
+
+>   git stash储藏当前工作环境。
+>
+>   用`git status`查看工作区，就是干净的（除非有没有被Git管理的文件）。
+>
+>   git stash list查看储存的环境。
+>
+>   一是用`git stash apply`恢复，但是恢复后，stash内容并不删除，你需要用`git stash drop`来删除；
+>
+>   另一种方式是用`git stash pop`，恢复的同时把stash内容也删了。
+>
+>   你可以多次stash，恢复的时候，先用`git stash list`查看，然后恢复指定的stash，用命令：
+>
+>   ```
+>   $ git stash apply stash@{0}
+>   ```
+>
+>   Git专门提供了一个`cherry-pick`命令，让我们能复制一个特定的提交到当前分支。
+>
+>   ```
+>   git cherry-pick 34x6a35
+>   ```
+>
+
+### 删除没有合并的分支
+
+>   如果分支没有第一次合并，那么，要使用大写的D
+>   
+>   ```
+>   git branch -D xxx
+>   ```
+>   
+
+### 推送分支
+
+>   git remote查看远程库的信息。
+>
+>   git remote -v显示更详细的信息。
+>
+>   git push origin master推送master分支，
+>
+>   当然，你也可以推送其他分支。
+>
+>   你也可以不推送其他分支，完全可以在家里玩。
+
+### rebase
+
+>   rebase可以将Git的提交历史变为一条干净的直线。
+>
+>   ```
+>   $ git rebase
+>   ```
+>
+>   中间输出了一大堆操作，在使用log一看，一条干净的直线，爽！
+
+---
+
+## 标签
+
+### 标签管理
+
+>   git打标签（不是你想的那个**打**标签）很简单：
+>
+>   首先，切换到需要打标签的分支，
+>
+>   再输入：
+>
+>   git tag v1.0
+>
+>   这样，这个分支就被打标签了😝
+>
+>   这些Microsoft中文输入法的表情符号我永远不会忘记，因为：
+>
+>   Bing: 我不会说中文，但我会英语和表情符号，流利的表情符号😝
+>
+>   使用git tag查看标签。
+>
+>   也可以打在提交的commit上：
+>
+>   ```
+>   $ git tag v0.9 f52c633
+>   ```
+>
+>   可以用`git show <tagName>`查看标签信息。
+>   	
+>   还可以创建带有说明的标签，用`-a`指定标签名，`-m`指定说明文字：
+>
+>   ```
+>   $ git tag -a v0.1 -m "version 0.1 released" 1094adb
+>   ```
+>
+>   
+>   git tag -d v1.0删除标签
+>   
+
+### 推送标签
+
+>   不是你们想的flash插件推送😝
+>
+>   git push origin v1.0推送标签，
+>
+>   git push origin --tags一口气推送全部标签。
+>
+>   如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除，然后，从远程删除。删除命令也是push，但是格式如下：
+>
+>   ```
+>   $ git push origin :refs/tags/v0.9
+>   ```
 
